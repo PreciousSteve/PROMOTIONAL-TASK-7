@@ -55,7 +55,7 @@ def login(user:User):
 
 @app.get("/users/me")
 def read_users_me(token: str = Depends(security_detail)):
-    
+    for user in users_db:
         if user.username == token:
             return {"username":f"Welcome {user.username}"}
     raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid authentication credentials")
